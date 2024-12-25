@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# "Список Пользователей" на React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Этот проект представляет собой React-приложение для отображения списков пользователей, полученных с сервера. Включены такие функции, как пагинация, фильтрация по имени пользователя и оптимизация интерфейса для работы с большими объемами данных. Также проект содержит встроенный сервер с тестовыми данными.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Возможности
 
-### `yarn start`
+1. **Список пользователей с пагинацией и фильтрацией**  
+   - Получение данных пользователей с API.  
+   - Реализована пагинация для удобной навигации.  
+   - Функция фильтрации позволяет искать пользователей по имени.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Оптимизированный список для больших объемов данных**  
+   - Используется библиотека `react-window` для виртуализации длинных списков.  
+   - Эффективная работа даже с наборами данных размером более 100 000 пользователей.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Встроенный тестовый сервер**  
+   - В проект включен простой сервер для предоставления тестовых данных (`./server/server.js`).
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Установка и запуск
 
-### `yarn build`
+### 1. Установка зависимостей
+Убедитесь, что у вас установлены Node.js и npm. Затем выполните:
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Запуск сервера
+Тестовый сервер находится в файле `./server/server.js`. Чтобы запустить его, выполните команду:
+```bash
+сd server
+npm install
+node server.js
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Сервер будет доступен по адресу [http://localhost:5000](http://localhost:5000).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Запуск React-приложения
+В новом терминале выполните:
+```bash
+npm start
+```
 
-### `yarn eject`
+Приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Как это работает
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Пагинация и фильтрация**  
+  Приложение запрашивает данные пользователей с сервера. Пользователи могут перемещаться по страницам и использовать строку поиска для фильтрации результатов по имени.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Оптимизированный список**  
+  Второй список пользователей разработан для работы с большими наборами данных. Он использует `react-window` для рендеринга только видимых строк.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Оптимизация для больших списков
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Для работы с наборами данных более 100 000 пользователей:  
+1. **Виртуализация**  
+   В проекте используется `react-window` для рендеринга только видимых элементов, что снижает нагрузку на DOM и память.  
+2. **Ленивая загрузка**  
+   Рекомендуется реализовать ленивая подгрузка данных с API, чтобы уменьшить время начальной загрузки.  
+3. **Дебаунсинг фильтрации**  
+   Для повышения производительности поиска можно использовать задержку (debounce) обработки ввода пользователя, чтобы избежать частых вызовов API или тяжелых операций.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
